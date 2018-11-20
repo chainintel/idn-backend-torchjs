@@ -9,7 +9,7 @@
     "watch": "tsc --watch",
     "test": "npm run build && mocha --reporter spec",
     "prepublish": "npm run build",
-    "dopublish": "npm publish --access=public"
+    "dopublish": "git add . && git commit -m'bump version' && git push origin master && npm publish --access=public"
   },
   "author": "",
   "license": "ISC",
