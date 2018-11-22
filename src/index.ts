@@ -9,8 +9,14 @@ const path = require('path');
  * Currently only support single input / output
  */
 class TorchJSBackend extends Backend {
-  constructor(supported_types) {
-    super(supported_types);
+  constructor(types = []) {
+    types = types.filter((type) => ['torch/cuda', 'torch/cpu'].indexOf(type) >= 0);
+    if (types.length == 0) {
+      throw new Error(
+        'please provide an array of types this backend support (torch/cuda,torch/cpu)'
+      );
+    }
+    super(types);
   }
   async _initFn(model) {
     let modelPath = model.path;
